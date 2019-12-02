@@ -51,7 +51,7 @@ function paintFilms() {
   for (let i = 0; i < films.length; i++) {
     const favoriteFilm = favoriteFilms.indexOf(i);
     const isFavorite = favoriteFilm !== -1;
-    
+
     const defaultImage =
       'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
