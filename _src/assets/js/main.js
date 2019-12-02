@@ -10,32 +10,31 @@ let films = [];
 //variable predefinida como array en la que guardamos los favoritos
 let favoriteFilms = [];
 
-// function setLocalStorage() {
-//   localStorage.setItem("films", JSON.stringify(films));
-// }
+function setLocalStorage() {
+  localStorage.setItem("favorite", JSON.stringify(favoriteFilms));
+}
 
-// function getLocalStorage() {
-//   const localStorageFilmsJSON = localStorage.getItem("films");
-//   const localStorageFilms = JSON.parse(localStorageFilmsJSON);
+function getLocalStorage() {
+  const localStorageFavoriteFilms = JSON.parse(localStorage.getItem("favorite"));
 
-//   if (localStorageFilms !== null) {
-//     favoriteFilms = localStorageFilms;
-//     paintFilms();
-//     listenFilms();
-//   } else {
-//     getServerData();
-//   }
-// }
+  if (localStorageFavoriteFilms !== null) {
+    favoriteFilms = localStorageFavoriteFilms;
+    paintFavorites();
+  } else {
+    getServerData();
+  }
+}
 
 //FETCH
-function getServerData(ev) {
-  ev.preventDefault();
+function getServerData() {
+
   fetch(
       `http://api.tvmaze.com/search/shows?q=${userSearch.value}`
     )
     .then(response => response.json())
     .then(function (serverData) {
       films = serverData;
+      getLocalStorage();
       paintFilms();
       listenFilms();
     })
@@ -49,8 +48,11 @@ function paintFilms() {
   let htmlCode = '';
 
   for (let i = 0; i < films.length; i++) {
-    const favoriteFilm = favoriteFilms.indexOf(i);
-    const isFavorite = favoriteFilm !== -1;
+    const favoriteIndex = favoriteFilms.findIndex(function (show, favoriteIndex) {
+      return show.id === films[i].show.id;
+    })
+
+    const isFavorite = favoriteIndex !== -1;
 
     const defaultImage =
       'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
@@ -95,6 +97,7 @@ function toogleFavorites(ev) {
   paintFilms();
   listenFilms();
   paintFavorites();
+  setLocalStorage();
 }
 
 function paintFavorites() {
@@ -116,6 +119,11 @@ function paintFavorites() {
   containerFav.innerHTML = htmlCode;
 }
 
+function handler(ev) {
+  ev.preventDefault();
+  getServerData();
+}
+
 function listenFilms() {
   const filmItems = document.querySelectorAll('.js-film-item');
 
@@ -124,5 +132,5 @@ function listenFilms() {
   }
 }
 
-btn.addEventListener('click', getServerData);
-// getLocalStorage()
+btn.addEventListener('click', handler);
+getLocalStorage()
