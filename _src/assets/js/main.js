@@ -11,18 +11,25 @@ let films = [];
 let favoriteFilms = [];
 
 // function setLocalStorage() {
-//   localStorage.setItem('favoriteFilms', JSON.stringify(films));
+//   localStorage.setItem("films", JSON.stringify(films));
 // }
 
 // function getLocalStorage() {
+//   const localStorageFilmsJSON = localStorage.getItem("films");
+//   const localStorageFilms = JSON.parse(localStorageFilmsJSON);
 
-
+//   if (localStorageFilms !== null) {
+//     favoriteFilms = localStorageFilms;
+//     paintFilms();
+//     listenFilms();
+//   } else {
+//     getServerData();
+//   }
 // }
-
 
 //FETCH
 function getServerData(ev) {
-  ev.preventDefault(ev);
+  ev.preventDefault();
   fetch(
       `http://api.tvmaze.com/search/shows?q=${userSearch.value}`
     )
@@ -44,6 +51,7 @@ function paintFilms() {
   for (let i = 0; i < films.length; i++) {
     const favoriteFilm = favoriteFilms.indexOf(i);
     const isFavorite = favoriteFilm !== -1;
+    
     const defaultImage =
       'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
@@ -69,23 +77,44 @@ function paintFilms() {
 function toogleFavorites(ev) {
   //metemos en una constante el id de los elementos seleccionados
   const clickedItem = parseInt(ev.currentTarget.id);
-  console.log(clickedItem);
-  
-  const isFavorite = clickedItem !== -1;
+  const favoriteIndex = favoriteFilms.findIndex(function (show, favoriteIndex) {
+    return show.id === clickedItem
+  })
 
-  if (isFavorite) {
-    favoriteFilms.push(clickedItem);
+  const isFavorite = favoriteIndex !== -1;
+
+  if (isFavorite === true) {
+    favoriteFilms.splice(favoriteIndex, 1);
   } else {
-    favoriteFilms.splice(clickedItem, 1);
+    for (let i = 0; i < films.length; i++) {
+      if (clickedItem === films[i].show.id) {
+        favoriteFilms.push(films[i].show);
+      }
+    }
   }
-
-  
-
   paintFilms();
   listenFilms();
+  paintFavorites();
 }
 
+function paintFavorites() {
+  const containerFav = document.querySelector('.js-paint-favorites');
+  let htmlCode = "";
+  for (let i = 0; i < favoriteFilms.length; i++) {
+    htmlCode += `<li class=js-favorites id='${favoriteFilms[i].id}'>`;
+    htmlCode += `<h3 class="favTitle">${favoriteFilms[i].name}</h3>`;
+    if (favoriteFilms[i].image === null) {
+      htmlCode +=
+        '<img class="item__img"src="./assets/images/tvPlaceholder.png"/>';
+    } else {
+      htmlCode += `<img class='item__img'src='${favoriteFilms[i].image.medium}'/>`;
+    }
 
+    htmlCode += "</li>";
+  }
+
+  containerFav.innerHTML = htmlCode;
+}
 
 function listenFilms() {
   const filmItems = document.querySelectorAll('.js-film-item');
@@ -96,3 +125,4 @@ function listenFilms() {
 }
 
 btn.addEventListener('click', getServerData);
+// getLocalStorage()
