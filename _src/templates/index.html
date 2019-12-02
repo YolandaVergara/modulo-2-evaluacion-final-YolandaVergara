@@ -3,18 +3,25 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Buscador de series</title>
-
   <link rel="stylesheet" href="./assets/css/main.css" />
 </head>
 
 <body>
-  <div class="page">
-    <partial src="_header.html" label="Header"></partial>
-    <partial src="_main.html" label="Main"></partial>
+  <form class="js-form">
+    <label for="input" class="js-title">Buscador de series</label>
+    <input type="text" name="text" id="text" class="js-input">
+    <button type="submit" class="js-btn">Buscar</button>
+  </form>
+  <div class="js-container"></div>
 
-  </div>
   <script src="./assets/js/main.js"></script>
 </body>
 
 </html>
+
+<!-- 
+<partial src="_header.html" label="Header"></partial>
+<partial src="_main.html" label="Main"></partial> -->
