@@ -1,6 +1,6 @@
 'use strict';
 //variable donde voy a mostrar el contenido buscado
-const dataResults = document.querySelector(".js-container");
+const dataResults = document.querySelector('.js-container');
 //variable donde guardamos la búsqueda del usuario
 const userSearch = document.querySelector('.js-input');
 //variable que ejecuta la busqueda
@@ -39,13 +39,13 @@ function getServerData(ev) {
 
 //FUNCION PINTAR RESULTADOS
 function paintFilms() {
-  let htmlCode = "";
+  let htmlCode = '';
 
   for (let i = 0; i < films.length; i++) {
     const favoriteFilm = favoriteFilms.indexOf(i);
     const isFavorite = favoriteFilm !== -1;
     const defaultImage =
-      "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
+      'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
     if (isFavorite) {
       htmlCode += `<li class="js-films js-film-item favorite-film" id=${films[i].show.id} >`;
@@ -70,17 +70,16 @@ function toogleFavorites(ev) {
   //metemos en una constante el id de los elementos seleccionados
   const clickedItem = parseInt(ev.currentTarget.id);
   console.log(clickedItem);
-  //guardamos en otra constante la posición de los elementos clickados
-  // const favoriteFilm = favoriteFilms.indexOf(clickedItem);
-  //en el caso de no encontrarla, le asigna un -1, por lo que sólo guardamos los que son diferentes a -1
+  
   const isFavorite = clickedItem !== -1;
 
-  if (isFavorite === true) {
-    favoriteFilms.splice(clickedItem, 1);
+  if (isFavorite) {
+    favoriteFilms.push(clickedItem);
   } else {
-    favoriteFilms.push(parseInt(ev.currentTarget.id));
+    favoriteFilms.splice(clickedItem, 1);
   }
 
+  
 
   paintFilms();
   listenFilms();
@@ -89,10 +88,10 @@ function toogleFavorites(ev) {
 
 
 function listenFilms() {
-  const filmItems = document.querySelectorAll(".js-film-item");
+  const filmItems = document.querySelectorAll('.js-film-item');
 
   for (const filmItem of filmItems) {
-    filmItem.addEventListener("click", toogleFavorites);
+    filmItem.addEventListener('click', toogleFavorites);
   }
 }
 
