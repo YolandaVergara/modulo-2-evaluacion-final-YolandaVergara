@@ -10,12 +10,11 @@ Pasos a realizar:
       [x] El servidor me devuelve la info
       [x] Pinto N resultados en el html
             [x] Pinto titulo
-            [x] Pinto imagen y en el caso de no tener, poner por defecto https://via.placeholder.com/210x295/ffffff/666666/?
-text=TV
-      [ ] Usuario elige resultados favoritos y se almacenan en un nuevo array
+            [x] Pinto imagen y en el caso de no tener, poner por defecto 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV?'
+      [x] Usuario elige resultados favoritos y se almacenan en un nuevo array
       [ ] Cambiamos la clase cambiando fondo y fuente
       [ ] Pintamos resultados de nuevo
-            [ ] En un div los resultados de la búsqueda 
+            [ ] En un div los resultados de la búsqueda
             [ ] En otro div los favoritos
       [ ] Quitamos los favoritos si el usuario vuelve a seleccionar el resultado guardado como favorito
       [ ] Guardamos datos de favoritos en local storage
@@ -23,4 +22,3 @@ text=TV
       [ ] Comprobar y recuperar de local storage
 
       [ ] BONUS: Afinar maqutación
-      
