@@ -7,27 +7,16 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Buscador de series</title>
   <link rel="stylesheet" href="./assets/css/main.css" />
+  <script src="https://kit.fontawesome.com/61294e7035.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
 </head>
 
-<body>
-  <div>
-    <form>
-      <label for="input" class="js-title">Buscador de series</label>
-      <input type="text" name="text" id="text" class="js-input">
-      <button type="submit" class="js-btn">Buscar</button>
-    </form>
-    <div class="result__container">
-      <ul class="js-container"></ul>
-
-      <ul class="js-paint-favorites"></ul>
-
-    </div>
+<body class="body">
+  <div class="container">
+    <partial src="_header.html"></partial>
+    <partial src="_main.html"></partial>
   </div>
   <script src="./assets/js/main.js"></script>
 </body>
 
 </html>
-
-<!-- 
-<partial src="_header.html" label="Header"></partial>
-<partial src="_main.html" label="Main"></partial> -->

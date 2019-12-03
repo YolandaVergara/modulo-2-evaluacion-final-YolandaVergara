@@ -1,0 +1,41 @@
+.container {
+
+  
+    &__result {
+      display: flex;
+      flex-direction: row;
+      padding: 40px;
+  
+      margin: auto;
+  
+      &__favs {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+  
+        &--title {
+          font-family: 'Indie Flower', cursive;
+          font-size: 40px;
+          text-align: center;
+        }
+      }
+  
+      &__search {
+        display: flex;
+        flex-direction: column;width:70%;
+  
+        &--title {
+          font-family: 'Indie Flower', cursive;
+          font-size: 40px;
+          text-align: center;
+        }
+        &--ul{
+          display: flex;
+          flex-wrap: wrap;
+        }
+      }
+  
+    }
+  }
+  
+  
