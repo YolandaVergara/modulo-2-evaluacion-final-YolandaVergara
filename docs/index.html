@@ -8,23 +8,33 @@
         <title>Buscador de series</title>
         <link rel="stylesheet" href="./assets/css/main.css"
         />
+        <script src="https://kit.fontawesome.com/61294e7035.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap"
+        rel="stylesheet">
     </head>
     
-    <body>
-        <div>
-            <form>
-                <label for="input" class="js-title">Buscador de series</label>
-                <input type="text" name="text" id="text" class="js-input">
-                <button type="submit" class="js-btn">Buscar</button>
+    <body class="body">
+        <div class="container">
+            <form class="form">
+                <label for="input" class="form__title">Buscador de series</label>
+                <input type="text" name="text" id="text" class="js-input form__input"
+                placeholder='Introduce tu búsqueda'>
+                <button type="submit" class="js-btn form__button">Buscar</button>
             </form>
-            <div class="result__container">
-                <ul class="js-container"></ul>
-                <ul class="js-paint-favorites"></ul>
+            <div class="container__result">
+                <div class="container__result__favs">
+                     <h2 class="container__result__favs--title">Series favoritas</h2>
+
+                    <ul class="js-paint-favorites"></ul>
+                </div>
+                <div class="container__result__search">
+                     <h2 class="container__result__search--title">Resultado de la búsqueda</h2>
+
+                    <ul class="js-container container__result__search--ul"></ul>
+                </div>
             </div>
         </div>
         <script src="./assets/js/main.js"></script>
     </body>
 
 </html>
-<!-- <header class="page__header">Header</header>
-<main class="page__main">Main</main> -->
