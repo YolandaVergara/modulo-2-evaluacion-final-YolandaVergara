@@ -4,6 +4,7 @@ const userSearch = document.querySelector('.js-input');
 const btn = document.querySelector('.js-btn');
 let films = [];
 let favoriteFilms = [];
+const languajes = ['English', 'Spanish', 'Portuguese'];
 
 //Local Storage
 function setLocalStorage() {
@@ -51,6 +52,12 @@ function paintFilms() {
       htmlCode += `<li class="js-film-item film__item" id=${films[i].show.id} >`;
     }
     htmlCode += `<h3 class="js-films-name film__title">${films[i].show.name}</h3>`;
+    htmlCode += `<p class="js-films-languaje">${films[i].show.language}</p>`;
+    for (let j = 0; j < languajes.length; j++) {
+      if (films[i].show.language === languajes[j])
+        htmlCode += `<p class="js-films-recomended">Recomendada</p>`;
+    }
+
     if (films[i].show.image !== null) {
       let filmImage = films[i].show.image.medium;
       htmlCode += `<img src="${filmImage}" class="film__image" alt="Imagen de la película">`;
@@ -135,6 +142,14 @@ function listenDelete() {
     deleteItem.addEventListener('click', toogleFavorites);
   }
 }
+
+const log = document.querySelector('.js-log');
+
+function numFilms() {
+  console.log(`Tienes ${favoriteFilms.length} series favoritas`);
+}
+
+log.addEventListener('click',numFilms);
 
 btn.addEventListener('click', handler);
 getLocalStorage()
