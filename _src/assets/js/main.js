@@ -11,11 +11,12 @@ function setLocalStorage() {
   localStorage.setItem('favorite', JSON.stringify(favoriteFilms));
 }
 
-function getLocalStorage() {
-  const localStorageFavoriteFilms = JSON.parse(localStorage.getItem('films'));
+function getLocalStorage() {  
+  const localStorageFavoriteFilms = JSON.parse(localStorage.getItem('favorite'));
   if (localStorageFavoriteFilms !== null) {
     favoriteFilms = localStorageFavoriteFilms;
     paintFilms();
+    paintFavorites();
     listenFilms();
   } else {
     getServerData();
